@@ -1,0 +1,2 @@
+include README.md
+recursive-include minions *.py *.html *.js *.gif *.css
