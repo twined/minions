@@ -14,4 +14,4 @@ Installation:
 Usage:
 ------
 
-Add `minions` to `INSTALLED_APPS`
+**Minions** plugs in automatically to the twined admin application. Just add to `INSTALLED_APPS` and it will be auto discovered
