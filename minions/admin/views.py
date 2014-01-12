@@ -8,7 +8,7 @@ from django.views.generic import (CreateView, ListView,
 from django.contrib.auth.models import User
 
 from minions.forms import UserForm, UserCreateForm, PassChangeForm
-from application.views import LoginRequiredMixin
+from minions.views import LoginRequiredMixin
 
 
 class ListUsersView(LoginRequiredMixin, ListView):
