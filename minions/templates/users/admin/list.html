@@ -1,6 +1,6 @@
 {% extends "admin/base.html" %}
 {% block content %}
-<h3>Brukere – oversikt</h3>
+<h3>Brukere | oversikt</h3>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -22,18 +22,18 @@
                 <td>{{ user.updated|date:"d/m/y" }}</td>
                 <td class="action-icons">
                     <a title="Endre" href="{% url 'admin:users:update' user.pk %}">
-                        <i class="icon-edit icon-large"></i>
+                        <i class="fa fa-pencil-square-o fa-lg"></i>
                     </a>
                 </td>
-                <td><a title="Slett" href="{% url 'admin:users:delete' user.pk %}"><i class="icon-trash icon-large"></i></a></td>
+                <td><a title="Slett" href="{% url 'admin:users:delete' user.pk %}"><i class="fa fa-trash-o fa-lg"></i></a></td>
             </tr>
         {% endfor %}
     </tbody>
 </table>
 
 <div class="form-actions">
-<a href="{% url 'admin:users:create' %}" class="btn">
-    <i class="icon-new"></i> Ny bruker
+<a href="{% url 'admin:users:create' %}" class="btn btn-primary">
+    <i class="fa fa-plus"></i> Ny bruker
 </a>
 </div>
 </div>
