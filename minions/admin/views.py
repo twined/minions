@@ -7,7 +7,9 @@ from django.views.generic import (CreateView, ListView,
 
 from django.contrib.auth.models import User
 
-from minions.forms import UserForm, UserCreateForm, PassChangeForm
+from minions.forms import (UserForm, UserCreateForm, PassChangeForm,
+                           UserProfileForm)
+from minions.models import UserProfile
 from minions.views import LoginRequiredMixin
 
 
@@ -56,6 +58,42 @@ class DeleteUsersView(LoginRequiredMixin, DeleteView):
     model = User
     template_name = "users/admin/user_confirm_delete.html"
     success_url = reverse_lazy('admin:users:list')
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        # set the owner to be the current user
+        messages.success(self.request, "Endringen var vellykket.",
+                         extra_tags='msg')
+        return super(UpdateUsersView, self).form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, "Rett feilene under")
+        return super(UpdateUsersView, self).form_invalid(form)
+
+
+class UpdateProfileView(LoginRequiredMixin, UpdateView):
+    model = UserProfile
+    form_class = UserProfileForm
+    template_name = "users/admin/profile.html"
+    success_url = reverse_lazy('admin:dashboard')
+
+    def get_object(self):
+        usr, created = UserProfile.objects.get_or_create(
+            user__pk=self.request.user.id,
+            defaults={'user': self.request.user})
+        return usr
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        # set the owner to be the current user
+        self.object.user = self.request.user
+        messages.success(self.request, "Endringen var vellykket.",
+                         extra_tags='msg')
+        return super(UpdateProfileView, self).form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, "Rett feilene under")
+        return super(UpdateProfileView, self).form_invalid(form)
 
 
 class ChangePasswordUsersView(LoginRequiredMixin, FormView):

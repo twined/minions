@@ -1,35 +1,52 @@
 {% extends "admin/base.html" %}
 {% block content %}
-<h3>Brukere | oversikt</h3>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Brukernavn</th>
-            <th>Epost</th>
-            <th>Fullt navn</th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for user in users %}
-            <tr>
-                <td>{{ user.pk }}</td>
-                <td>{{ user.username }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.get_full_name }}</td>
-                <td>{{ user.updated|date:"d/m/y" }}</td>
-                <td class="action-icons">
-                    <a title="Endre" href="{% url 'admin:users:update' user.pk %}">
-                        <i class="fa fa-pencil-square-o fa-lg"></i>
-                    </a>
-                </td>
-                <td><a title="Slett" href="{% url 'admin:users:delete' user.pk %}"><i class="fa fa-trash-o fa-lg"></i></a></td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<h3 class="section">Brukere | oversikt</h3>
+<div class="row">
+    <div class="col-md-10 col-sm-12">
+        <section class="panel panel-default">
+            <table class="table">
+                <colgroup>
+                    <col span="4">
+                    <col span="1" style="width: 110px;">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Brukernavn</th>
+                        <th>Epost</th>
+                        <th>Fullt navn</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td>#{{ user.pk }}</td>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.get_full_name }}</td>
+                            <td>{{ user.updated|date:"d/m/y" }}</td>
+                            <td class="action-icons">
+                                <a title="Endre" href="{% url 'admin:users:update' user.pk %}">
+                                    <span class="fa-stack">
+                                        <i class="fa fa-circle fa-stack-2x bluegray"></i>
+                                        <i class="fa fa-edit fa-stack-1x"></i>
+                                    </span>
+                                </a>
+                                <a title="Slett" href="{% url 'admin:users:delete' user.pk %}">
+                                    <span class="fa-stack">
+                                        <i class="fa fa-circle fa-stack-2x bluegray"></i>
+                                        <i class="fa fa-trash-o fa-stack-1x"></i>
+                                    </span>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </div>
+</div>
 
 <div class="form-actions">
 <a href="{% url 'admin:users:create' %}" class="btn btn-primary">

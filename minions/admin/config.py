@@ -10,15 +10,20 @@ APP_ADMIN_MENU = {
         'icon': 'fa fa-user icon',
 
         'menu': {
+            'Profil': {
+                'url': reverse_lazy('admin:users:profile'),
+                'icon': 'icon-th-list',
+                'order': 0,
+            },
             'Oversikt': {
                 'url': reverse_lazy('admin:users:list'),
                 'icon': 'icon-th-list',
-                'order': 0,
+                'order': 1,
             },
             'Legg til': {
                 'url': reverse_lazy('admin:users:create'),
                 'icon': 'icon-plus-sign',
-                'order': 1,
+                'order': 2,
             },
         }
     }
