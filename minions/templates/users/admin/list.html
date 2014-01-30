@@ -27,17 +27,11 @@
                             <td>{{ user.get_full_name }}</td>
                             <td>{{ user.updated|date:"d/m/y" }}</td>
                             <td class="action-icons">
-                                <a title="Endre" href="{% url 'admin:users:update' user.pk %}">
-                                    <span class="fa-stack">
-                                        <i class="fa fa-circle fa-stack-2x bluegray"></i>
-                                        <i class="fa fa-edit fa-stack-1x"></i>
-                                    </span>
+                                <a class="btn btn-rounded btn-sm btn-icon btn-default" title="Endre" href="{% url 'admin:users:update' user.pk %}">
+                                    <i class="fa fa-edit"></i>
                                 </a>
-                                <a title="Slett" href="{% url 'admin:users:delete' user.pk %}">
-                                    <span class="fa-stack">
-                                        <i class="fa fa-circle fa-stack-2x bluegray"></i>
-                                        <i class="fa fa-trash-o fa-stack-1x"></i>
-                                    </span>
+                                <a class="btn btn-rounded btn-sm btn-icon btn-default" title="Slett" href="{% url 'admin:users:delete' user.pk %}">
+                                    <i class="fa fa-trash-o"></i>
                                 </a>
                             </td>
                         </tr>
@@ -49,9 +43,9 @@
 </div>
 
 <div class="form-actions">
-<a href="{% url 'admin:users:create' %}" class="btn btn-primary">
-    <i class="fa fa-plus"></i> Ny bruker
-</a>
+    <a href="{% url 'admin:users:create' %}" class="btn btn-primary">
+        <i class="fa fa-plus m-r-xs"></i> Ny bruker
+    </a>
 </div>
-</div>
+
 {% endblock content %}
