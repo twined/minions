@@ -4,7 +4,7 @@ from setuptools import find_packages
 
 setup(
     name='minions',
-    version='0.3.1',
+    version='v1.0.0',
     author=u'Twined',
     author_email='www.twined.net',
     packages=find_packages(),
